@@ -1,0 +1,9 @@
+module cpu_w(
+	clock,
+	reset
+)
+
+input clock;
+input reset;
+
+end module;

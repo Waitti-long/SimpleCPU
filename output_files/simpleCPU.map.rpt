@@ -1,0 +1,770 @@
+Analysis & Synthesis report for simpleCPU
+Sat Jul 04 23:59:33 2020
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |cpu_w|jp
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Source assignments for lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated
+ 14. Source assignments for lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated
+ 15. Source assignments for lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated
+ 16. Parameter Settings for User Entity Instance: lpm_rom:iram
+ 17. Parameter Settings for User Entity Instance: lpm_ram_dq:dram
+ 18. Parameter Settings for User Entity Instance: lpm_ram_dq:sram
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sat Jul 04 23:59:33 2020       ;
+; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
+; Revision Name                      ; simpleCPU                                   ;
+; Top-level Entity Name              ; cpu_w                                       ;
+; Family                             ; Cyclone IV E                                ;
+; Total logic elements               ; 544                                         ;
+;     Total combinational functions  ; 501                                         ;
+;     Dedicated logic registers      ; 153                                         ;
+; Total registers                    ; 153                                         ;
+; Total pins                         ; 178                                         ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 2,101,248                                   ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Top-level entity name                                            ; cpu_w              ; simpleCPU          ;
+; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                        ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                          ; Library ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------+---------+
+; cpu_w.v                          ; yes             ; User Verilog HDL File                  ; E:/Projects/Quartus/simpleCPU/cpu_w.v                                 ;         ;
+; code.mif                         ; yes             ; User Memory Initialization File        ; E:/Projects/Quartus/simpleCPU/code.mif                                ;         ;
+; lpm_rom.tdf                      ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf           ;         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; aglobal191.inc                   ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/aglobal191.inc        ;         ;
+; altrom.tdf                       ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altrom.tdf            ;         ;
+; memmodes.inc                     ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/others/maxplus2/memmodes.inc        ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; altsyncram.inc                   ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altsyncram.inc        ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altram.inc                       ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_l701.tdf           ; yes             ; Auto-Generated Megafunction            ; E:/Projects/Quartus/simpleCPU/db/altsyncram_l701.tdf                  ;         ;
+; db/decode_k8a.tdf                ; yes             ; Auto-Generated Megafunction            ; E:/Projects/Quartus/simpleCPU/db/decode_k8a.tdf                       ;         ;
+; db/mux_qob.tdf                   ; yes             ; Auto-Generated Megafunction            ; E:/Projects/Quartus/simpleCPU/db/mux_qob.tdf                          ;         ;
+; lpm_ram_dq.tdf                   ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/lpm_ram_dq.tdf        ;         ;
+; altram.tdf                       ; yes             ; Megafunction                           ; d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf            ;         ;
+; db/altsyncram_cq91.tdf           ; yes             ; Auto-Generated Megafunction            ; E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf                  ;         ;
+; data.mif                         ; yes             ; Auto-Found Memory Initialization File  ; E:/Projects/Quartus/simpleCPU/data.mif                                ;         ;
+; db/decode_rsa.tdf                ; yes             ; Auto-Generated Megafunction            ; E:/Projects/Quartus/simpleCPU/db/decode_rsa.tdf                       ;         ;
+; db/altsyncram_8u91.tdf           ; yes             ; Auto-Generated Megafunction            ; E:/Projects/Quartus/simpleCPU/db/altsyncram_8u91.tdf                  ;         ;
+; stack.mif                        ; yes             ; Auto-Found Memory Initialization File  ; E:/Projects/Quartus/simpleCPU/stack.mif                               ;         ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 544         ;
+;                                             ;             ;
+; Total combinational functions               ; 501         ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 311         ;
+;     -- 3 input functions                    ; 163         ;
+;     -- <=2 input functions                  ; 27          ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 471         ;
+;     -- arithmetic mode                      ; 30          ;
+;                                             ;             ;
+; Total registers                             ; 153         ;
+;     -- Dedicated logic registers            ; 153         ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 178         ;
+; Total memory bits                           ; 2101248     ;
+;                                             ;             ;
+; Embedded Multiplier 9-bit elements          ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; clock~input ;
+; Maximum fan-out                             ; 425         ;
+; Total fan-out                               ; 6851        ;
+; Average fan-out                             ; 5.34        ;
++---------------------------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                      ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                           ; Entity Name     ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |cpu_w                                       ; 501 (325)           ; 153 (147)                 ; 2101248     ; 0            ; 0       ; 0         ; 178  ; 0            ; |cpu_w                                                                                                        ; cpu_w           ; work         ;
+;    |lpm_ram_dq:dram|                         ; 0 (0)               ; 0 (0)                     ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:dram                                                                                        ; lpm_ram_dq      ; work         ;
+;       |altram:sram|                          ; 0 (0)               ; 0 (0)                     ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:dram|altram:sram                                                                            ; altram          ; work         ;
+;          |altsyncram:ram_block|              ; 0 (0)               ; 0 (0)                     ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:dram|altram:sram|altsyncram:ram_block                                                       ; altsyncram      ; work         ;
+;             |altsyncram_cq91:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096        ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated                        ; altsyncram_cq91 ; work         ;
+;    |lpm_ram_dq:sram|                         ; 88 (0)              ; 3 (0)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:sram                                                                                        ; lpm_ram_dq      ; work         ;
+;       |altram:sram|                          ; 88 (0)              ; 3 (0)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:sram|altram:sram                                                                            ; altram          ; work         ;
+;          |altsyncram:ram_block|              ; 88 (0)              ; 3 (0)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:sram|altram:sram|altsyncram:ram_block                                                       ; altsyncram      ; work         ;
+;             |altsyncram_8u91:auto_generated| ; 88 (0)              ; 3 (3)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated                        ; altsyncram_8u91 ; work         ;
+;                |decode_k8a:rden_decode|      ; 8 (8)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated|decode_k8a:rden_decode ; decode_k8a      ; work         ;
+;                |mux_qob:mux2|                ; 80 (80)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated|mux_qob:mux2           ; mux_qob         ; work         ;
+;    |lpm_rom:iram|                            ; 88 (0)              ; 3 (0)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_rom:iram                                                                                           ; lpm_rom         ; work         ;
+;       |altrom:srom|                          ; 88 (0)              ; 3 (0)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_rom:iram|altrom:srom                                                                               ; altrom          ; work         ;
+;          |altsyncram:rom_block|              ; 88 (0)              ; 3 (0)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_rom:iram|altrom:srom|altsyncram:rom_block                                                          ; altsyncram      ; work         ;
+;             |altsyncram_l701:auto_generated| ; 88 (0)              ; 3 (3)                     ; 1048576     ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated                           ; altsyncram_l701 ; work         ;
+;                |decode_k8a:rden_decode|      ; 8 (8)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated|decode_k8a:rden_decode    ; decode_k8a      ; work         ;
+;                |mux_qob:mux2|                ; 80 (80)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |cpu_w|lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated|mux_qob:mux2              ; mux_qob         ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                  ;
++--------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+---------+-----------+
+; Name                                                                                       ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size    ; MIF       ;
++--------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+---------+-----------+
+; lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 65536        ; 16           ; --           ; --           ; 1048576 ; data.mif  ;
+; lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 65536        ; 16           ; --           ; --           ; 1048576 ; stack.mif ;
+; lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated|ALTSYNCRAM    ; AUTO ; ROM         ; 65536        ; 16           ; --           ; --           ; 1048576 ; code.mif  ;
++--------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+---------+-----------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |cpu_w|jp                                                                                                                               ;
++---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
+; Name                ; jp.0000000000000101 ; jp.0000000000000100 ; jp.0000000000000011 ; jp.0000000000000010 ; jp.0000000000000001 ; jp.0000000000000000 ;
++---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
+; jp.0000000000000000 ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ; 0                   ;
+; jp.0000000000000001 ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ; 1                   ;
+; jp.0000000000000010 ; 0                   ; 0                   ; 0                   ; 1                   ; 0                   ; 1                   ;
+; jp.0000000000000011 ; 0                   ; 0                   ; 1                   ; 0                   ; 0                   ; 1                   ;
+; jp.0000000000000100 ; 0                   ; 1                   ; 0                   ; 0                   ; 0                   ; 1                   ;
+; jp.0000000000000101 ; 1                   ; 0                   ; 0                   ; 0                   ; 0                   ; 1                   ;
++---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+---------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                           ;
++-----------------------------------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                                                       ; Reason for Removal                     ;
++-----------------------------------------------------------------------------------------------------+----------------------------------------+
+; lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|address_reg_a[0..2] ; Stuck at GND due to stuck port data_in ;
+; shl_cnt[4]                                                                                          ; Stuck at GND due to stuck port data_in ;
+; jp~5                                                                                                ; Lost fanout                            ;
+; jp~6                                                                                                ; Lost fanout                            ;
+; jp~7                                                                                                ; Lost fanout                            ;
+; jp~8                                                                                                ; Lost fanout                            ;
+; jp~9                                                                                                ; Lost fanout                            ;
+; jp~10                                                                                               ; Lost fanout                            ;
+; jp~11                                                                                               ; Lost fanout                            ;
+; jp~12                                                                                               ; Lost fanout                            ;
+; jp~13                                                                                               ; Lost fanout                            ;
+; jp~14                                                                                               ; Lost fanout                            ;
+; jp~15                                                                                               ; Lost fanout                            ;
+; jp~16                                                                                               ; Lost fanout                            ;
+; jp~17                                                                                               ; Lost fanout                            ;
+; jp~18                                                                                               ; Lost fanout                            ;
+; jp~19                                                                                               ; Lost fanout                            ;
+; jp~20                                                                                               ; Lost fanout                            ;
+; Total Number of Removed Registers = 20                                                              ;                                        ;
++-----------------------------------------------------------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 153   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 43    ;
+; Number of registers using Asynchronous Clear ; 63    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 137   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 8:1                ; 16 bits   ; 80 LEs        ; 32 LEs               ; 48 LEs                 ; Yes        ; |cpu_w|data_trans[11]      ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |cpu_w|shl_cnt[1]          ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |cpu_w|add_num[13]         ;
+; 6:1                ; 12 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |cpu_w|ds_wd[11]           ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |cpu_w|add_num[6]          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |cpu_w|ds_wd[1]            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |cpu_w|sp[10]              ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |cpu_w|reg1[15]            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |cpu_w|bp[11]              ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |cpu_w|sp[7]               ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |cpu_w|reg1[7]             ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |cpu_w|bp[7]               ;
+; 9:1                ; 16 bits   ; 96 LEs        ; 0 LEs                ; 96 LEs                 ; Yes        ; |cpu_w|ip[15]              ;
+; 38:1               ; 3 bits    ; 75 LEs        ; 12 LEs               ; 63 LEs                 ; Yes        ; |cpu_w|reg0[9]             ;
+; 39:1               ; 6 bits    ; 156 LEs       ; 24 LEs               ; 132 LEs                ; Yes        ; |cpu_w|reg0[7]             ;
+; 40:1               ; 2 bits    ; 52 LEs        ; 8 LEs                ; 44 LEs                 ; Yes        ; |cpu_w|reg0[15]            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |cpu_w|Mux35               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Source assignments for lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------+
+; Assignment                      ; Value              ; From ; To                                    ;
++---------------------------------+--------------------+------+---------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                     ;
++---------------------------------+--------------------+------+---------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Source assignments for lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                       ;
++---------------------------------+--------------------+------+------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                        ;
++---------------------------------+--------------------+------+------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Source assignments for lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                       ;
++---------------------------------+--------------------+------+------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                        ;
++---------------------------------+--------------------+------+------------------------------------------+
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lpm_rom:iram ;
++------------------------+--------------+-------------------+
+; Parameter Name         ; Value        ; Type              ;
++------------------------+--------------+-------------------+
+; LPM_WIDTH              ; 16           ; Signed Integer    ;
+; LPM_WIDTHAD            ; 16           ; Signed Integer    ;
+; LPM_NUMWORDS           ; 65536        ; Untyped           ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED   ; Untyped           ;
+; LPM_OUTDATA            ; UNREGISTERED ; Untyped           ;
+; LPM_FILE               ; code.mif     ; Untyped           ;
+; DEVICE_FAMILY          ; Cyclone IV E ; Untyped           ;
+; AUTO_CARRY_CHAINS      ; ON           ; AUTO_CARRY        ;
+; IGNORE_CARRY_BUFFERS   ; OFF          ; IGNORE_CARRY      ;
+; AUTO_CASCADE_CHAINS    ; ON           ; AUTO_CASCADE      ;
+; IGNORE_CASCADE_BUFFERS ; OFF          ; IGNORE_CASCADE    ;
++------------------------+--------------+-------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lpm_ram_dq:dram ;
++------------------------+--------------+----------------------+
+; Parameter Name         ; Value        ; Type                 ;
++------------------------+--------------+----------------------+
+; LPM_WIDTH              ; 16           ; Signed Integer       ;
+; LPM_WIDTHAD            ; 16           ; Signed Integer       ;
+; LPM_NUMWORDS           ; 65536        ; Untyped              ;
+; LPM_INDATA             ; REGISTERED   ; Untyped              ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED   ; Untyped              ;
+; LPM_OUTDATA            ; UNREGISTERED ; Untyped              ;
+; LPM_FILE               ; data.mif     ; Untyped              ;
+; USE_EAB                ; ON           ; Untyped              ;
+; DEVICE_FAMILY          ; Cyclone IV E ; Untyped              ;
+; CBXI_PARAMETER         ; NOTHING      ; Untyped              ;
+; AUTO_CARRY_CHAINS      ; ON           ; AUTO_CARRY           ;
+; IGNORE_CARRY_BUFFERS   ; OFF          ; IGNORE_CARRY         ;
+; AUTO_CASCADE_CHAINS    ; ON           ; AUTO_CASCADE         ;
+; IGNORE_CASCADE_BUFFERS ; OFF          ; IGNORE_CASCADE       ;
++------------------------+--------------+----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: lpm_ram_dq:sram ;
++------------------------+--------------+----------------------+
+; Parameter Name         ; Value        ; Type                 ;
++------------------------+--------------+----------------------+
+; LPM_WIDTH              ; 16           ; Signed Integer       ;
+; LPM_WIDTHAD            ; 16           ; Signed Integer       ;
+; LPM_NUMWORDS           ; 65536        ; Untyped              ;
+; LPM_INDATA             ; REGISTERED   ; Untyped              ;
+; LPM_ADDRESS_CONTROL    ; REGISTERED   ; Untyped              ;
+; LPM_OUTDATA            ; UNREGISTERED ; Untyped              ;
+; LPM_FILE               ; stack.mif    ; Untyped              ;
+; USE_EAB                ; ON           ; Untyped              ;
+; DEVICE_FAMILY          ; Cyclone IV E ; Untyped              ;
+; CBXI_PARAMETER         ; NOTHING      ; Untyped              ;
+; AUTO_CARRY_CHAINS      ; ON           ; AUTO_CARRY           ;
+; IGNORE_CARRY_BUFFERS   ; OFF          ; IGNORE_CARRY         ;
+; AUTO_CASCADE_CHAINS    ; ON           ; AUTO_CASCADE         ;
+; IGNORE_CASCADE_BUFFERS ; OFF          ; IGNORE_CASCADE       ;
++------------------------+--------------+----------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 178                         ;
+; cycloneiii_ff         ; 153                         ;
+;     CLR               ; 7                           ;
+;     ENA               ; 54                          ;
+;     ENA CLR           ; 40                          ;
+;     ENA CLR SLD       ; 16                          ;
+;     ENA SLD           ; 27                          ;
+;     plain             ; 9                           ;
+; cycloneiii_lcell_comb ; 502                         ;
+;     arith             ; 30                          ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 15                          ;
+;     normal            ; 472                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 8                           ;
+;         3 data inputs ; 148                         ;
+;         4 data inputs ; 311                         ;
+; cycloneiii_ram_block  ; 272                         ;
+;                       ;                             ;
+; Max LUT depth         ; 9.00                        ;
+; Average LUT depth     ; 4.59                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+    Info: Processing started: Sat Jul 04 23:59:20 2020
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off simpleCPU -c simpleCPU
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file cpu_w.v
+    Info (12023): Found entity 1: cpu_w File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 1
+Info (12127): Elaborating entity "cpu_w" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(105): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 105
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(122): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 122
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(185): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 185
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(209): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 209
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(214): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 214
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(230): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 230
+Info (10264): Verilog HDL Case Statement information at cpu_w.v(220): all case item expressions in this case statement are onehot File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 220
+Warning (10230): Verilog HDL assignment warning at cpu_w.v(246): truncated value with size 32 to match size of target (16) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 246
+Warning (10240): Verilog HDL Always Construct warning at cpu_w.v(75): inferring latch(es) for variable "addr", which holds its previous value in one or more paths through the always construct File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Warning (10240): Verilog HDL Always Construct warning at cpu_w.v(75): inferring latch(es) for variable "ss_w", which holds its previous value in one or more paths through the always construct File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "ss_w" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[8]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[9]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[10]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[11]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[12]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[13]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[14]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (10041): Inferred latch for "addr[15]" at cpu_w.v(75) File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 75
+Info (12128): Elaborating entity "lpm_rom" for hierarchy "lpm_rom:iram" File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 37
+Info (12130): Elaborated megafunction instantiation "lpm_rom:iram" File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 37
+Info (12133): Instantiated megafunction "lpm_rom:iram" with the following parameter: File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 37
+    Info (12134): Parameter "lpm_width" = "16"
+    Info (12134): Parameter "lpm_widthad" = "16"
+    Info (12134): Parameter "lpm_outdata" = "UNREGISTERED"
+    Info (12134): Parameter "lpm_indata" = "REGISTERED"
+    Info (12134): Parameter "lpm_address_control" = "REGISTERED"
+    Info (12134): Parameter "lpm_file" = "code.mif"
+Info (12128): Elaborating entity "altrom" for hierarchy "lpm_rom:iram|altrom:srom" File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 55
+Info (12131): Elaborated megafunction instantiation "lpm_rom:iram|altrom:srom", which is child of megafunction instantiation "lpm_rom:iram" File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 55
+Info (12128): Elaborating entity "altsyncram" for hierarchy "lpm_rom:iram|altrom:srom|altsyncram:rom_block" File: d:/quartus/19.1/quartus/libraries/megafunctions/altrom.tdf Line: 89
+Info (12131): Elaborated megafunction instantiation "lpm_rom:iram|altrom:srom|altsyncram:rom_block", which is child of megafunction instantiation "lpm_rom:iram" File: d:/quartus/19.1/quartus/libraries/megafunctions/altrom.tdf Line: 89
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_l701.tdf
+    Info (12023): Found entity 1: altsyncram_l701 File: E:/Projects/Quartus/simpleCPU/db/altsyncram_l701.tdf Line: 32
+Info (12128): Elaborating entity "altsyncram_l701" for hierarchy "lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated" File: d:/quartus/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Critical Warning (127005): Memory depth (65536) in the design file differs from memory depth (4096) in the Memory Initialization File "E:/Projects/Quartus/simpleCPU/code.mif" -- setting initial value for remaining addresses to 0 File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 37
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_k8a.tdf
+    Info (12023): Found entity 1: decode_k8a File: E:/Projects/Quartus/simpleCPU/db/decode_k8a.tdf Line: 23
+Info (12128): Elaborating entity "decode_k8a" for hierarchy "lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated|decode_k8a:rden_decode" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_l701.tdf Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_qob.tdf
+    Info (12023): Found entity 1: mux_qob File: E:/Projects/Quartus/simpleCPU/db/mux_qob.tdf Line: 23
+Info (12128): Elaborating entity "mux_qob" for hierarchy "lpm_rom:iram|altrom:srom|altsyncram:rom_block|altsyncram_l701:auto_generated|mux_qob:mux2" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_l701.tdf Line: 41
+Info (12128): Elaborating entity "lpm_ram_dq" for hierarchy "lpm_ram_dq:dram" File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 45
+Info (12130): Elaborated megafunction instantiation "lpm_ram_dq:dram" File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 45
+Info (12133): Instantiated megafunction "lpm_ram_dq:dram" with the following parameter: File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 45
+    Info (12134): Parameter "lpm_width" = "16"
+    Info (12134): Parameter "lpm_widthad" = "16"
+    Info (12134): Parameter "lpm_outdata" = "UNREGISTERED"
+    Info (12134): Parameter "lpm_indata" = "REGISTERED"
+    Info (12134): Parameter "lpm_address_control" = "REGISTERED"
+    Info (12134): Parameter "lpm_file" = "data.mif"
+Info (12128): Elaborating entity "altram" for hierarchy "lpm_ram_dq:dram|altram:sram" File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_ram_dq.tdf Line: 106
+Warning (287001): Assertion warning: altram does not support Cyclone IV E device family -- attempting best-case memory conversions, but power-up states and read during write behavior will be different for Cyclone IV E devices File: d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf Line: 212
+Info (12131): Elaborated megafunction instantiation "lpm_ram_dq:dram|altram:sram", which is child of megafunction instantiation "lpm_ram_dq:dram" File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_ram_dq.tdf Line: 106
+Info (12128): Elaborating entity "altsyncram" for hierarchy "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block" File: d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf Line: 103
+Info (12131): Elaborated megafunction instantiation "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block", which is child of megafunction instantiation "lpm_ram_dq:dram" File: d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf Line: 103
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_cq91.tdf
+    Info (12023): Found entity 1: altsyncram_cq91 File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_cq91" for hierarchy "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated" File: d:/quartus/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_rsa.tdf
+    Info (12023): Found entity 1: decode_rsa File: E:/Projects/Quartus/simpleCPU/db/decode_rsa.tdf Line: 23
+Info (12128): Elaborating entity "decode_rsa" for hierarchy "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|decode_rsa:decode3" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 44
+Info (12128): Elaborating entity "lpm_ram_dq" for hierarchy "lpm_ram_dq:sram" File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 53
+Info (12130): Elaborated megafunction instantiation "lpm_ram_dq:sram" File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 53
+Info (12133): Instantiated megafunction "lpm_ram_dq:sram" with the following parameter: File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 53
+    Info (12134): Parameter "lpm_width" = "16"
+    Info (12134): Parameter "lpm_widthad" = "16"
+    Info (12134): Parameter "lpm_outdata" = "UNREGISTERED"
+    Info (12134): Parameter "lpm_indata" = "REGISTERED"
+    Info (12134): Parameter "lpm_address_control" = "REGISTERED"
+    Info (12134): Parameter "lpm_file" = "stack.mif"
+Info (12128): Elaborating entity "altram" for hierarchy "lpm_ram_dq:sram|altram:sram" File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_ram_dq.tdf Line: 106
+Warning (287001): Assertion warning: altram does not support Cyclone IV E device family -- attempting best-case memory conversions, but power-up states and read during write behavior will be different for Cyclone IV E devices File: d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf Line: 212
+Info (12131): Elaborated megafunction instantiation "lpm_ram_dq:sram|altram:sram", which is child of megafunction instantiation "lpm_ram_dq:sram" File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_ram_dq.tdf Line: 106
+Info (12128): Elaborating entity "altsyncram" for hierarchy "lpm_ram_dq:sram|altram:sram|altsyncram:ram_block" File: d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf Line: 103
+Info (12131): Elaborated megafunction instantiation "lpm_ram_dq:sram|altram:sram|altsyncram:ram_block", which is child of megafunction instantiation "lpm_ram_dq:sram" File: d:/quartus/19.1/quartus/libraries/megafunctions/altram.tdf Line: 103
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8u91.tdf
+    Info (12023): Found entity 1: altsyncram_8u91 File: E:/Projects/Quartus/simpleCPU/db/altsyncram_8u91.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_8u91" for hierarchy "lpm_ram_dq:sram|altram:sram|altsyncram:ram_block|altsyncram_8u91:auto_generated" File: d:/quartus/19.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following RAM node(s):
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a16" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 415
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a17" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 438
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a18" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 461
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a19" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 484
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a20" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 507
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a21" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 530
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a22" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 553
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a23" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 576
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a24" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 599
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a25" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 622
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a26" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 645
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a27" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 668
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a28" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 691
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a29" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 714
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a30" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 737
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a31" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 760
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a32" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 783
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a33" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 806
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a34" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 829
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a35" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 852
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a36" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 875
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a37" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 898
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a38" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 921
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a39" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 944
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a40" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 967
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a41" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 990
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a42" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1013
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a43" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1036
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a44" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1059
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a45" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1082
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a46" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1105
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a47" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1128
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a48" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1151
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a49" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1174
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a50" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1197
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a51" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1220
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a52" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1243
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a53" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1266
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a54" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1289
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a55" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1312
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a56" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1335
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a57" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1358
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a58" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1381
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a59" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1404
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a60" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1427
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a61" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1450
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a62" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1473
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a63" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1496
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a64" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1519
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a65" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1542
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a66" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1565
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a67" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1588
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a68" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1611
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a69" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1634
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a70" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1657
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a71" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1680
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a72" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1703
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a73" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1726
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a74" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1749
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a75" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1772
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a76" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1795
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a77" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1818
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a78" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1841
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a79" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1864
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a80" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1887
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a81" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1910
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a82" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1933
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a83" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1956
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a84" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 1979
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a85" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2002
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a86" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2025
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a87" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2048
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a88" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2071
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a89" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2094
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a90" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2117
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a91" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2140
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a92" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2163
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a93" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2186
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a94" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2209
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a95" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2232
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a96" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2255
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a97" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2278
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a98" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2301
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a99" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2324
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a100" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2347
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a101" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2370
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a102" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2393
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a103" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2416
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a104" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2439
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a105" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2462
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a106" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2485
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a107" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2508
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a108" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2531
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a109" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2554
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a110" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2577
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a111" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2600
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a112" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2623
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a113" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2646
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a114" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2669
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a115" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2692
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a116" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2715
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a117" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2738
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a118" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2761
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a119" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2784
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a120" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2807
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a121" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2830
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a122" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2853
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a123" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2876
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a124" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2899
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a125" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2922
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a126" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2945
+        Warning (14320): Synthesized away node "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ram_block1a127" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 2968
+Warning (13044): Always-enabled tri-state buffer(s) removed
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[0]" to the node "o_cmd[0]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[1]" to the node "o_cmd[1]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[2]" to the node "o_cmd[2]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[3]" to the node "o_cmd[3]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[4]" to the node "o_cmd[4]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[5]" to the node "o_cmd[5]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[6]" to the node "o_cmd[6]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[7]" to the node "o_cmd[7]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[8]" to the node "o_cmd[8]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[9]" to the node "o_cmd[9]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[10]" to the node "o_cmd[10]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[11]" to the node "o_cmd[11]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[12]" to the node "o_cmd[12]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[13]" to the node "o_cmd[13]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[14]" to the node "o_cmd[14]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13045): Converted the fanout from the always-enabled tri-state buffer "lpm_rom:iram|otri[15]" to the node "o_cmd[15]" into a wire File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[0]" to the node "addr[0]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[1]" to the node "addr[1]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[2]" to the node "addr[2]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[3]" to the node "addr[3]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[4]" to the node "addr[4]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[5]" to the node "addr[5]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[6]" to the node "addr[6]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[7]" to the node "addr[7]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[8]" to the node "Mux31" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[9]" to the node "Mux15" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[10]" to the node "ds_wd[0]" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[11]" to the node "Equal0" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[12]" to the node "Equal0" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[13]" to the node "Equal0" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[14]" to the node "Equal0" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+    Warning (13047): Converted the fan-out from the tri-state buffer "lpm_rom:iram|otri[15]" to the node "Equal0" into an OR gate File: d:/quartus/19.1/quartus/libraries/megafunctions/lpm_rom.tdf Line: 68
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "o_jp[3]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[4]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[5]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[6]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[7]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[8]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[9]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[10]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[11]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[12]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[13]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[14]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_jp[15]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[8]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[9]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[10]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[11]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[12]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[13]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[14]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+    Warning (13410): Pin "o_addr[15]" is stuck at GND File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 20
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 16 registers lost all their fanouts during netlist optimizations.
+Info (17036): Removed 5 MSB VCC or GND address nodes from RAM block "lpm_ram_dq:dram|altram:sram|altsyncram:ram_block|altsyncram_cq91:auto_generated|ALTSYNCRAM" File: E:/Projects/Quartus/simpleCPU/db/altsyncram_cq91.tdf Line: 47
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 1030 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 176 output pins
+    Info (21061): Implemented 580 logic cells
+    Info (21064): Implemented 272 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 183 warnings
+    Info: Peak virtual memory: 4773 megabytes
+    Info: Processing ended: Sat Jul 04 23:59:33 2020
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:27
+
+

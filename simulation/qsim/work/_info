@@ -1,0 +1,73 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Projects/Quartus/simpleCPU/simulation/qsim
+vcpu_w
+Z1 !s110 1593878430
+!i10b 1
+!s100 a>z?KV;[fAZ;LX>[21[jP0
+Io<`PS[Q5Am[P_TeTB=[9l2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1593878428
+Z4 8simpleCPU.vo
+Z5 FsimpleCPU.vo
+L0 32
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1593878429.000000
+Z8 !s107 simpleCPU.vo|
+Z9 !s90 -work|work|simpleCPU.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vcpu_w_vlg_vec_tst
+R1
+!i10b 1
+!s100 O@zBlE1>9Ahl04c?o6HO23
+IeH2AQN384J3^69dR`1UbO3
+R2
+R0
+w1593878427
+8Waveform1.vwf.vt
+FWaveform1.vwf.vt
+L0 30
+R6
+r1
+!s85 0
+31
+!s108 1593878430.000000
+!s107 Waveform1.vwf.vt|
+!s90 -work|work|Waveform1.vwf.vt|
+!i113 1
+R10
+R11
+vhard_block
+R1
+!i10b 1
+!s100 4UbeS<hzoGGmHkI?XaAzU3
+I@nOg;5UdXbo2jT0<EMNg<1
+R2
+R0
+R3
+R4
+R5
+L0 31123
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
