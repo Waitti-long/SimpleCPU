@@ -25,9 +25,11 @@ reg [15:0] reg0, bp, reg1; // 寄存器0，栈底指针，寄存器1
 
 reg [15:0] data_trans, ds_wd, ss_wd; // CP中间数据，写DS，写SS
 
-reg [4:0] shl_cnt; // 左移位数
+reg [4:0] shl_cnt, shr_cnt; // 左移位数, 右移位数
 
 reg [15:0] add_num, sub_num; // 加缓存，减缓存
+
+reg [15:0] xor_mid, or_mid, and_mid; // 异或中间量，或中间量，与中间量
 
 wire [15:0] cmd, memory, ss_data; // 指令， DS数据，SS数据
 
@@ -225,7 +227,56 @@ begin
 						endcase
 								jp <= 0;
 					end
-				
+				// XOR
+				11: begin
+						case (cmd[10:8])
+								0: xor_mid <= {8'b00000000,cmd[7:0]};
+								1: xor_mid <= reg0;
+								2:	xor_mid <= bp;
+								3:	xor_mid <= sp;
+								4: xor_mid <= reg1;
+						endcase
+						jp <= 3;
+					end
+					// OR
+				12: begin
+						case (cmd[10:8])
+								0: or_mid <= {8'b00000000,cmd[7:0]};
+								1: or_mid <= reg0;
+								2:	or_mid <= bp;
+								3:	or_mid <= sp;
+								4: or_mid <= reg1;
+						endcase
+						jp <= 3;
+					end
+					// AND
+				13: begin
+						case (cmd[10:8])
+								0: and_mid <= {8'b00000000,cmd[7:0]};
+								1: and_mid <= reg0;
+								2:	and_mid <= bp;
+								3:	and_mid <= sp;
+								4: and_mid <= reg1;
+						endcase
+						jp <= 3;
+					end	
+				// SHR $0右移寄存器位或立即数位
+				14: begin
+						case (cmd[10:8])
+						0: shr_cnt <= cmd[3:0];
+						1: shr_cnt <= reg0[3:0];
+						2:	shr_cnt <= bp[3:0];
+						3:	shr_cnt <= sp[3:0];
+						4:	shr_cnt <= reg1[3:0];
+						endcase
+						jp <= 3;
+					end
+				// NOT
+				15: begin
+						reg0 <= ~reg0;
+						ip <= ip + 1;
+						jp <= 0;
+					end
 			endcase
 			end
 			
@@ -282,7 +333,48 @@ begin
 						jp <= 0;
 						ip <= ip + 1;
 					end
-	
+				// XOR
+				11: begin
+						case (cmd[10:8])
+								0: reg0 <= reg0 ^ xor_mid;
+								1: reg0 <= reg0 ^ xor_mid;
+								2:	reg0 <= reg0 ^ xor_mid;
+								3:	reg0 <= reg0 ^ xor_mid;
+								4: reg0 <= reg0 ^ xor_mid;
+						endcase
+						jp <= 0;
+						ip <= ip + 1;
+					end
+				// OR
+				12: begin
+						case (cmd[10:8])
+								0: reg0 <= reg0 | or_mid;
+								1: reg0 <= reg0 | or_mid;
+								2:	reg0 <= reg0 | or_mid;
+								3:	reg0 <= reg0 | or_mid;
+								4: reg0 <= reg0 | or_mid;
+						endcase
+						jp <= 0;
+						ip <= ip + 1;
+					end
+				// AND
+				13: begin
+						case (cmd[10:8])
+								0: reg0 <= reg0 & and_mid;
+								1: reg0 <= reg0 & and_mid;
+								2:	reg0 <= reg0 & and_mid;
+								3:	reg0 <= reg0 & and_mid;
+								4: reg0 <= reg0 & and_mid;
+						endcase
+						jp <= 0;
+						ip <= ip + 1;
+					end
+				// SHR	
+				14: begin
+						reg0 <= (reg0 >> shr_cnt);
+						jp <= 0;
+						ip <= ip + 1;
+					end
 			endcase
 			end
 			
