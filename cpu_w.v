@@ -165,15 +165,76 @@ begin
 						endcase
 						jp <= 3;
 					end
+				// SUB	
+				7: begin
+						case (cmd[10:8])
+						0: sub_num <= {8'b00000000,cmd[7:0]};
+						1: sub_num <= reg0;
+						2:	sub_num <= bp;
+						3:	sub_num <= sp;
+						4: sub_num <= reg1;
+						endcase
+						jp <= 3;
+					end
+				// JZ reg0为0时跳转
+				8: begin
+						if (reg0 != 0)
+						begin
+							jp <= 0;
+							ip <= ip + 1;
+						end
+						else
+						begin
+							case (cmd[10:8])
+								0: ip <= {8'b00000000,cmd[7:0]};
+								1: ip <= reg0;
+								2:	ip <= bp;
+								3:	ip <= sp;
+								4: ip <= reg1;
+							endcase
+								jp <= 0;
+						end
+					end
+				// JB reg0<0时跳转	
+				9: begin
+						if (reg0 >= 0 && reg0 < 128)
+						begin
+							jp <= 0;
+							ip <= ip + 1;
+						end
+						else
+						begin
+							case (cmd[10:8])
+								0: ip <= {8'b00000000,cmd[7:0]};
+								1: ip <= reg0;
+								2:	ip <= bp;
+								3:	ip <= sp;
+								4: ip <= reg1;
+							endcase
+								jp <= 0;
+						end
+					end
+				// JMP 无条件跳转
+				10:	begin
+						case (cmd[10:8])
+								0: ip <= {8'b00000000,cmd[7:0]};
+								1: ip <= reg0;
+								2:	ip <= bp;
+								3:	ip <= sp;
+								4: ip <= reg1;
+						endcase
+								jp <= 0;
+					end
+				
 			endcase
 			end
 			
 		3: begin
 			case (cmd[15:11])
-				// 读RAM
+				// LD 读RAM
 				1: jp <= 4;
 				
-				// 读缓存
+				// CP 读缓存
 				3: begin
 					case (cmd[10:8])
 						1: reg0 <= data_trans;
@@ -184,8 +245,9 @@ begin
 					jp <= 0;
 					ip <= ip + 1;
 					end
-				
+				// ST
 				4: jp <= 4;
+				// SHL
 				5: begin
 					case (shl_cnt)
 						0: reg0 <= reg0; 
@@ -208,17 +270,25 @@ begin
 					jp <= 0;
 					ip <= ip + 1;
 					end
+				// ADD	
 				6: begin
 						reg0 <= add_num + reg0;
 						jp <= 0;
 						ip <= ip + 1;
 					end
+				// SUB	
+				7: begin
+						reg0 <= reg0 - sub_num;
+						jp <= 0;
+						ip <= ip + 1;
+					end
+	
 			endcase
 			end
 			
 		4: begin
 			case (cmd[15:11])
-				// 写寄存器
+				// LD 写寄存器
 				1: begin 
 					case (cmd[10:8])
 						1: reg0 <= memory;
@@ -229,12 +299,12 @@ begin
 					jp <= 0;
 					ip <= ip + 1;
 				end
-				
+				// ST
 				4: begin
 					ds_w <= 1;
 					jp <= 5;
 					end
-					
+
 			endcase
 			end
 			

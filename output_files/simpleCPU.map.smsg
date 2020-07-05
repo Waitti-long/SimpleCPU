@@ -1,1 +1,0 @@
-Warning (10268): Verilog HDL information at cpu_w.v(57): always construct contains both blocking and non-blocking assignments File: E:/Projects/Quartus/simpleCPU/cpu_w.v Line: 57
