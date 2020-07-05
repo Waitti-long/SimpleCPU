@@ -277,6 +277,31 @@ begin
 						ip <= ip + 1;
 						jp <= 0;
 					end
+				// PUSH
+				16: begin
+						case (cmd[10:8])
+							0: ss_wd <= {8'b00000000, cmd[7:0]};
+							1: ss_wd <= reg0;
+							2: ss_wd <= bp;
+							3: ss_wd <= sp;
+							4: ss_wd <= reg1;
+						endcase
+						sp <= sp + 1;
+						ss_w <= 1;
+						jp <= 3;
+					end
+				// POP
+				17: begin
+						case (cmd[10:8])
+							1: reg0 <= ss_data;
+							2: bp <= ss_data;
+							3: sp <= ss_data;
+							4: reg1 <= ss_data;
+						endcase
+						sp <= sp - 1;
+						jp <= 0;
+						ip = ip + 1;
+					end	
 			endcase
 			end
 			
@@ -375,6 +400,9 @@ begin
 						jp <= 0;
 						ip <= ip + 1;
 					end
+				// PUSH
+				16: jp <= 4;
+					
 			endcase
 			end
 			
@@ -396,7 +424,12 @@ begin
 					ds_w <= 1;
 					jp <= 5;
 					end
-
+				// PUSH
+				16: begin
+						ss_w <= 0;
+						jp <= 0;
+						ip <= ip + 1;
+					end
 			endcase
 			end
 			
@@ -408,7 +441,12 @@ begin
 					ip <= ip + 1;
 					end
 			endcase
-			
+			end
+		6: begin
+			sp <= sp + 1;
+			ss_w <= 0;
+			jp <= 0;
+			ip <= ip + 1;
 			end
 			
 		endcase
