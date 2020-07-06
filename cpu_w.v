@@ -446,12 +446,6 @@ begin
 					end
 			endcase
 			end
-		6: begin
-			sp <= sp + 1;
-			ss_w <= 0;
-			jp <= 0;
-			ip <= ip + 1;
-			end
 			
 		endcase
 				
