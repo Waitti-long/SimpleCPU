@@ -1,0 +1,14 @@
+LD $0 0
+LN $1 0
+L0:
+JZ L1
+CP BP $0
+CP $0 $1
+ADD BP
+CP $1 $0
+CP $0 BP
+SUB 1
+JMP L0
+L1:
+PUSH $1
+POP BP
