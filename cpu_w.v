@@ -40,7 +40,7 @@ lpm_rom iram(.address(ip),.inclock(clock),.q(cmd));
 defparam iram.lpm_width = 16;
 defparam iram.lpm_widthad = 16;
 defparam iram.lpm_outdata = "UNREGISTERED";
-defparam iram.lpm_indata = "REGISTERED";
+// defparam iram.lpm_indata = "REGISTERED";
 defparam iram.lpm_address_control = "REGISTERED";
 defparam iram.lpm_file = "code.mif";
 
@@ -87,6 +87,10 @@ begin
 		
 		ds_w <= 0;
 		ss_w <= 0;
+
+		reg0 <= 0;
+		reg1 <= 0;
+		data_trans <= 0;
 		
 	end
 	else
