@@ -3,17 +3,21 @@ module ram(
 	iram,
 	eram,
 	iaddr,
-	data
+	data,
+	o_addr
 );
 
 input clk,iram,eram,iaddr;
 inout [15:0] data;
+
+output [15:0] o_addr;
 
 reg [15:0] mem [0:127];
 
 reg [15:0] addr, tmp;
 
 assign data = tmp;
+assign o_addr = addr;
 
 always @ (posedge clk)
 begin
@@ -22,6 +26,10 @@ begin
 	begin
 		mem[addr] <= data;
 	end
+end
+
+always @ (addr,eram)
+begin
 	if(eram)
 	begin
 		tmp <= mem[addr];

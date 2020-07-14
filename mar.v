@@ -21,6 +21,11 @@ begin
 	begin
 		buff <= data;
 	end
+	
+end
+
+always @ (buff, emar)
+begin
 	if(emar)
 	begin
 		tmp <= buff;

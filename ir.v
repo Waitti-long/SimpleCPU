@@ -48,8 +48,8 @@ assign _pop = buff[17];
 
 always @ (posedge clk)
 begin
-	if(iir)
-	begin
+//	if(iir)
+//	begin
 		case(code[15:11])
 		0:  buff <= 18'b000000000000000001;
 		1:	 buff <= 18'b000000000000000010;
@@ -72,8 +72,13 @@ begin
 		default: buff <= 1;
 		endcase
 	buff_data <= {8'b00000000, code[7:0]};
-	end
+//	end
 	
+	
+end
+
+always @ (buff_data, eir)
+begin
 	if(eir)
 	begin
 		tmp <= buff_data;
@@ -83,6 +88,5 @@ begin
 		tmp <= 16'bZZZZZZZZZZZZZZZZ;
 	end
 end
-
 
 endmodule

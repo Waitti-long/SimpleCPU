@@ -11,12 +11,13 @@ module cpu(
 	o_ip,
 	o_mar,
 	o_buff_data,
-	o_buff_code
+	o_buff_code,
+	o_addr
 );
 	
 input clk,reset;
 
-output [15:0] o_data,o_cmd,o_reg0,o_reg1,o_sp,o_bp,o_ip,o_mar,o_buff_data,o_buff_code;
+output [15:0] o_data,o_cmd,o_reg0,o_reg1,o_sp,o_bp,o_ip,o_mar,o_buff_data,o_buff_code,o_addr;
 
 wire t0,t1,t2,t3,t4,t5,t6,t7;
 wire _nop,_ld,_ln,_cp,_st,_shl,_add,_sub,_jz,_jb,_jmp,_xor,_or,_and,_shr,_not,_push,_pop;
@@ -53,6 +54,9 @@ dr _reg0(clk,idr_0,edr_0,data,data_reg0);
 dr _reg1(clk,idr_1,edr_1,data,data_reg1);
 dr _regsp(clk,idr_sp,edr_sp,data,data_sp);
 dr _regbp(clk,idr_bp,edr_bp,data,data_bp);
+
+ram _ram(clk,iram,eram,iaddr,data,o_addr);
+alu _alu(ialu,ealu,_shl,_add,_sub,_xor,_or,_and,_shr,_not,data_reg0,data);
 
 ctrl _ctrl(
 	clk, // 时钟,

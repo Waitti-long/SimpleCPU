@@ -69,90 +69,145 @@ begin
 	else
 	begin
 	case ({t0,t1,t2,t3,t4,t5,t6,t7})
-		8'b10000000:begin r_ipc <= 0;r_iir <= 1;  end
-		8'b01000000:begin r_iir <= 0;r_eir <= 1; r_imar <= 1;  end
-		8'b00100000:begin
-							r_eir <= 0; r_imar <= 1;
-							if(_ld)
-							begin
-								r_emar <= 1;
-								r_iaddr <= 1;
-							end
-							else if(_ln)
-							begin
-								r_emar <= 1;
-								case(cmd[10:8])
-									1: r_idr_0 <= 1;
-									2: r_idr_bp <= 1;
-									3: r_idr_sp <= 1;
-									4: r_idr_1 <= 1;
-								endcase
-							end
-							else if(_st)
-							begin
-								r_emar <= 1;
-								r_iaddr <= 1;
-							end
-						end
+		8'b10000000:begin r_ipc <= 0; end
+		8'b01000000:;
+		8'b00100000:begin r_eir <= 1; r_imar <= 1;end
 		8'b00010000:begin
-							if(_ld)
+							r_eir <= 0; r_imar <= 0;
+							if(_ln)
 							begin
-								r_emar <= 0;
-								r_iaddr <= 0;
-								r_eram <= 1;
+								r_emar <= 1;
 								case(cmd[10:8])
-									1: r_idr_0 <= 1;
-									2: r_idr_bp <= 1;
-									3: r_idr_sp <= 1;
-									4: r_idr_1 <= 1;
-								endcase
-							end
-							else if(_ln)
-							begin
-								r_emar <= 0;
-								case(cmd[10:8])
-									1: r_idr_0 <= 0;
-									2: r_idr_bp <= 0;
-									3: r_idr_sp <= 0;
-									4: r_idr_1 <= 0;
+									1:r_idr_0 <= 1;
+									2:r_idr_bp <= 1;
+									3:r_idr_sp <= 1;
+									4:r_idr_1 <= 1;
 								endcase
 							end
 							else if(_st)
 							begin
-								r_emar <= 0;
-								r_iaddr <= 0;
-								r_iram <= 1;
+								r_iaddr <= 1;r_emar <= 1;
+							end
+							else if(_ld)
+							begin
+								r_iaddr <= 1;r_emar <= 1;
+							end
+							else if(_cp)
+							begin
 								case(cmd[10:8])
-									1: r_edr_0 <= 1;
-									2: r_edr_bp <= 1;
-									3: r_edr_sp <= 1;
-									4: r_edr_1 <= 1;
+									1:r_idr_0 <= 1;
+									2:r_idr_bp <= 1;
+									3:r_idr_sp <= 1;
+									4:r_idr_1 <= 1;
 								endcase
+								case(cmd[2:0])
+									1:r_edr_0 <= 1;
+									2:r_edr_bp <= 1;
+									3:r_edr_sp <= 1;
+									4:r_edr_1 <= 1;
+								endcase
+							end
+							else if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
+							begin
+								case(cmd[10:8])
+									0:r_emar <= 1;
+									1:r_edr_0 <= 1;
+									2:r_edr_bp <= 1;
+									3:r_edr_sp <= 1;
+									4:r_edr_1 <= 1;
+								endcase
+								r_ialu <= 1;
 							end
 						end
 		8'b00001000:begin
-							if(_ld)
+							if(_ln)
 							begin
-								r_eram <= 0;
+								r_emar <= 0;
 								case(cmd[10:8])
-									1: r_idr_0 <= 0;
-									2: r_idr_bp <= 0;
-									3: r_idr_sp <= 0;
-									4: r_idr_1 <= 0;
+									1:r_idr_0 <=  0;
+									2:r_idr_bp <= 0;
+									3:r_idr_sp <= 0;
+									4:r_idr_1 <=  0;
 								endcase
 							end
 							else if(_st)
 							begin
-								r_iram <= 0;
+								r_iaddr <= 0;r_emar <= 0;
 								case(cmd[10:8])
-									1: r_edr_0 <= 0;
-									2: r_edr_bp <= 0;
-									3: r_edr_sp <= 0;
-									4: r_edr_1 <= 0;
+									1:r_edr_0 <=  1;
+									2:r_edr_bp <= 1;
+									3:r_edr_sp <= 1;
+									4:r_edr_1 <=  1;
+								endcase
+								r_iram <= 1;
+							end
+							else if(_ld)
+							begin
+								r_iaddr <= 0;r_emar <= 0;
+								case(cmd[10:8])
+									1:r_idr_0 <=  1;
+									2:r_idr_bp <= 1;
+									3:r_idr_sp <= 1;
+									4:r_idr_1 <=  1;
+								endcase
+								r_eram <= 1;
+							end
+							else if(_cp)
+							begin
+								case(cmd[10:8])
+									1:r_idr_0 <=  0;
+									2:r_idr_bp <= 0;
+									3:r_idr_sp <= 0;
+									4:r_idr_1 <=  0;
+								endcase
+								case(cmd[2:0])
+									1:r_edr_0 <=  0;
+									2:r_edr_bp <= 0;
+									3:r_edr_sp <= 0;
+									4:r_edr_1 <=  0;
 								endcase
 							end
+							else if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
+							begin
+								case(cmd[10:8])
+									0:r_emar <=   0;
+									1:r_edr_0 <=  0;
+									2:r_edr_bp <= 0;
+									3:r_edr_sp <= 0;
+									4:r_edr_1 <=  0;
+								endcase
+								r_ialu <= 0;
+								r_idr_0 <= 1;
+								r_ealu <= 1;
+							end
+						end
+		8'b00000100:begin
+							if(_st)
+							begin
+								case(cmd[10:8])
+									1:r_edr_0 <=  0;
+									2:r_edr_bp <= 0;
+									3:r_edr_sp <= 0;
+									4:r_edr_1 <=  0;
+								endcase
+								r_iram <= 0;
+							end
+							else if(_ld)
+							begin
+								case(cmd[10:8])
+									1:r_idr_0 <=  0;
+									2:r_idr_bp <= 0;
+									3:r_idr_sp <= 0;
+									4:r_idr_1 <=  0;
+								endcase
+								r_eram <= 0;
+							end
+							else if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
+							begin
+								r_idr_0 <= 0;
+								r_ealu <= 0;
+							end
 						end	
-		8'b00000100:;
 		8'b00000010:;
 		8'b00000001:begin r_ipc <= 1; end
 	endcase
