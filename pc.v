@@ -36,7 +36,7 @@ begin
 		end
 		else if(epc)
 		begin
-			cnt <= data;
+			cnt <= data - 1;
 		end
 	end
 end

@@ -13,14 +13,15 @@ module ctrl(
 	ialu,ealu, // alu
 	iram,eram,iaddr, // ram
 	ipc,epc, // ip
-	imar,emar // 地址寄存器
+	imar,emar, // 地址寄存器,
+	reg0 // data_reg0
 );
 
-input [15:0] cmd;
+input [15:0] cmd,reg0;
 input clk,t0,t1,t2,t3,t4,t5,t6,t7,_nop,_ld,_ln,_cp,_st,_shl,_add,_sub,_jz,_jb,_jmp,_xor,_or,_and,_shr,_not,_push,_pop,reset;
 output tset,idr_0,edr_0,idr_1,edr_1,idr_bp,edr_bp,idr_sp,edr_sp,iir,eir,ialu,ealu,iram,eram,iaddr,ipc,epc,imar,emar;
 
-reg r_tset,r_idr_0,r_edr_0,r_iir,r_ialu,r_ealu,r_iram,r_eram,r_ipc,r_imar,r_idr_1,r_edr_1,r_idr_sp,r_edr_sp,r_idr_bp,r_edr_bp,r_emar,r_eir,r_iaddr;
+reg r_tset,r_idr_0,r_edr_0,r_iir,r_ialu,r_ealu,r_iram,r_eram,r_ipc,r_epc,r_imar,r_idr_1,r_edr_1,r_idr_sp,r_edr_sp,r_idr_bp,r_edr_bp,r_emar,r_eir,r_iaddr;
 
 assign tset = r_tset;
 assign idr_0 = r_idr_0;
@@ -41,6 +42,7 @@ assign idr_bp = r_idr_bp;
 assign edr_bp = r_edr_bp;
 assign eir = r_eir;
 assign iaddr = r_iaddr;
+assign epc  = r_epc;
 
 always @ (posedge clk,negedge reset)
 begin
@@ -118,6 +120,27 @@ begin
 								endcase
 								r_ialu <= 1;
 							end
+							else if(_jz)
+							begin
+								if(reg0 == 0)
+								begin
+									r_emar <= 1;
+									r_epc <= 1;
+								end
+							end
+							else if(_jb)
+							begin
+								if(!(reg0 >= 0 && reg0 < 128))
+								begin
+									r_emar <= 1;
+									r_epc <= 1;
+								end
+							end
+							else if(_jmp)
+							begin
+								r_emar <= 1;
+								r_epc <= 1;
+							end
 						end
 		8'b00001000:begin
 							if(_ln)
@@ -179,6 +202,27 @@ begin
 								r_ialu <= 0;
 								r_idr_0 <= 1;
 								r_ealu <= 1;
+							end
+							else if(_jz)
+							begin
+								if(reg0 == 0)
+								begin
+									r_emar <= 0;
+									r_epc <= 0;
+								end
+							end
+							else if(_jb)
+							begin
+								if(!(reg0 >= 0 && reg0 < 128))
+								begin
+									r_emar <= 0;
+									r_epc <=  0;
+								end
+							end
+							else if(_jmp)
+							begin
+								r_emar <= 0;
+								r_epc <= 0;
 							end
 						end
 		8'b00000100:begin

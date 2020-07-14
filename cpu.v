@@ -25,8 +25,9 @@ wire tset,idr_0,edr_0,iir,eir,ialu,ealu,iram,eram,iaddr,ipc,epc,imar,emar,idr_1,
 
 wire [15:0] cmd,data_reg0,data_reg1,data_sp,data_bp,ip,addr;
 
-wire [15:0] data;
+wire [15:0] data,reg0_to_ctrl;
 
+assign reg0_to_ctrl = data_reg0;
 assign o_data = data;
 assign o_cmd = cmd;
 assign o_reg0 = data_reg0;
@@ -73,7 +74,8 @@ ctrl _ctrl(
 	ialu,ealu, // alu
 	iram,eram,iaddr, // ram
 	ipc,epc, // ip
-	imar,emar // 地址寄存器
+	imar,emar, // 地址寄存器
+	reg0_to_ctrl
 );			
 	
 endmodule
