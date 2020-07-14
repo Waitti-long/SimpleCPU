@@ -4,36 +4,32 @@ module tb ();
 reg clock,
 	reset;
 	// Observer
-wire [15:0] o_data,
+wire [15:0] o_jp,
+	o_ip,
+	o_addr,
+	o_sp,
 	o_cmd,
+	o_memory,
+	o_ss_data,
 	o_reg0,
 	o_reg1,
-	o_sp,
 	o_bp,
-	o_ip,
-	o_mar,
-	o_buff_data,
-	o_buff_code,
-	o_addr;
-	
+	o_data_trans;
 
-cpu _cpu(
-	clock,
+cpu_w cpu(clock,
 	reset,
-	// Obersver
-	o_data,
+	// Observer
+	o_jp,
+	o_ip,
+	o_addr,
+	o_sp,
 	o_cmd,
+	o_memory,
+	o_ss_data,
 	o_reg0,
 	o_reg1,
-	o_sp,
 	o_bp,
-	o_ip,
-	o_mar,
-	o_buff_data,
-	o_buff_code,
-	o_addr
-);
-	   
+	o_data_trans);        
 
 
 initial

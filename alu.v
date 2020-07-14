@@ -27,7 +27,6 @@ begin
 		8'b00000100: res <= (data_a & data);
 		8'b00000010: res <= (data_a >> data);
 		8'b00000001: res <= ~data_a;
-		default: res <= 0;
 	endcase
 	end
 end

@@ -111,6 +111,9 @@ begin
 							end
 							else if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
 							begin
+								
+								r_ialu <= 1;
+								
 								case(cmd[10:8])
 									0:r_emar <= 1;
 									1:r_edr_0 <= 1;
@@ -118,7 +121,6 @@ begin
 									3:r_edr_sp <= 1;
 									4:r_edr_1 <= 1;
 								endcase
-								r_ialu <= 1;
 							end
 							else if(_jz)
 							begin
@@ -192,16 +194,10 @@ begin
 							end
 							else if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
 							begin
-								case(cmd[10:8])
-									0:r_emar <=   0;
-									1:r_edr_0 <=  0;
-									2:r_edr_bp <= 0;
-									3:r_edr_sp <= 0;
-									4:r_edr_1 <=  0;
-								endcase
+								
+									
 								r_ialu <= 0;
-								r_idr_0 <= 1;
-								r_ealu <= 1;
+						
 							end
 							else if(_jz)
 							begin
@@ -248,12 +244,27 @@ begin
 							end
 							else if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
 							begin
-								r_idr_0 <= 0;
-								r_ealu <= 0;
+								case(cmd[10:8])
+									0:r_emar <=   0;
+									1:r_edr_0 <=  0;
+									2:r_edr_bp <= 0;
+									3:r_edr_sp <= 0;
+									4:r_edr_1 <=  0;
+								endcase
+								r_idr_0 <= 1;
+								r_ealu <= 1;
 							end
 						end	
-		8'b00000010:;
-		8'b00000001:begin r_ipc <= 1; end
+		8'b00000010:begin
+							if(_shl || _add || _sub || _xor || _or || _and || _shr || _not)
+							begin
+								r_idr_0 <= 0;
+								r_ealu <=  0;
+							end
+						end
+		8'b00000001:begin
+
+						r_ipc <= 1; end
 	endcase
 	end
 end
