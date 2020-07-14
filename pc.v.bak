@@ -1,0 +1,7 @@
+module pc(
+	
+);
+reg [15:0] cnt;
+
+
+endmodule
