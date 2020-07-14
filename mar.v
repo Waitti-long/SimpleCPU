@@ -21,8 +21,6 @@ begin
 	begin
 		buff <= data;
 	end
-	else 
-	begin
 	if(emar)
 	begin
 		tmp <= buff;
@@ -30,7 +28,6 @@ begin
 	else
 	begin
 		tmp <= 16'bZZZZZZZZZZZZZZZZ;
-	end
 	end
 end
 

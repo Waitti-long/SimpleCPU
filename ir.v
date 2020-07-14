@@ -2,20 +2,20 @@ module ir(
 	clk,
 	iir,
 	eir,
-	icode,
 	code,
 	_nop,_ld,_ln,_cp,_st,_shl,_add,_sub,_jz,_jb,_jmp,_xor,_or,_and,_shr,_not,_push,_pop,
 	data,
-	o_buff_data
+	o_buff_data,
+	o_buff_code
 );
 
-input clk,iir,eir,icode;
+input clk,iir,eir;
 
 input [15:0] code;
 
 output _nop,_ld,_ln,_cp,_st,_shl,_add,_sub,_jz,_jb,_jmp,_xor,_or,_and,_shr,_not,_push,_pop;
 
-output [15:0] o_buff_data;
+output [15:0] o_buff_data,o_buff_code;
 
 inout [15:0] data;
 
@@ -25,6 +25,7 @@ reg [15:0] buff_data,tmp;
 
 assign data = tmp;	
 assign o_buff_data = buff_data;
+assign o_buff_code = buff_code;
 
 assign _nop = buff[0];
 assign _ld  = buff[1];
@@ -48,20 +49,8 @@ assign _pop = buff[17];
 always @ (posedge clk)
 begin
 	if(iir)
-	buff_code <= code;
-	if(eir)
 	begin
-		tmp <= buff_data;
-	end
-	else
-	begin
-		tmp <= 16'bZZZZZZZZZZZZZZZZ;
-	end
-end
-
-always @ (buff_code)
-begin
-	case(buff_code[15:11])
+		case(code[15:11])
 		0:  buff <= 18'b000000000000000001;
 		1:	 buff <= 18'b000000000000000010;
 		2:	 buff <= 18'b000000000000000100;
@@ -81,8 +70,19 @@ begin
 		16: buff <= 18'b010000000000000000;
 		17: buff <= 18'b100000000000000000;
 		default: buff <= 1;
-	endcase;
-	buff_data <= {8'b00000000, buff_code[7:0]};
+		endcase
+	buff_data <= {8'b00000000, code[7:0]};
+	end
+	
+	if(eir)
+	begin
+		tmp <= buff_data;
+	end
+	else
+	begin
+		tmp <= 16'bZZZZZZZZZZZZZZZZ;
+	end
 end
+
 
 endmodule
