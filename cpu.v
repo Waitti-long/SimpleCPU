@@ -11,19 +11,18 @@ module cpu(
 	o_ip,
 	o_mar,
 	o_buff_data,
-	o_buff_code,
 	o_addr
 );
 	
 input clk,reset;
 
-output [15:0] o_data,o_cmd,o_reg0,o_reg1,o_sp,o_bp,o_ip,o_mar,o_buff_data,o_buff_code,o_addr;
+output [15:0] o_data,o_cmd,o_reg0,o_reg1,o_sp,o_bp,o_ip,o_mar,o_buff_data,o_addr;
 
 wire t0,t1,t2,t3,t4,t5,t6,t7;
 wire _nop,_ld,_ln,_cp,_st,_shl,_add,_sub,_jz,_jb,_jmp,_xor,_or,_and,_shr,_not,_push,_pop;
 wire tset,idr_0,edr_0,iir,eir,ialu,ealu,iram,eram,iaddr,ipc,epc,imar,emar,idr_1,edr_1,idr_bp,edr_bp,idr_sp,edr_sp;
 
-wire [15:0] cmd,data_reg0,data_reg1,data_sp,data_bp,ip,addr;
+wire [15:0] cmd,data_reg0,data_reg1,data_sp,data_bp,ip,addr,o_buff_code;
 
 wire [15:0] data,reg0_to_ctrl;
 

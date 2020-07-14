@@ -13,7 +13,6 @@ wire [15:0] o_data,
 	o_ip,
 	o_mar,
 	o_buff_data,
-	o_buff_code,
 	o_addr;
 	
 
@@ -30,7 +29,6 @@ cpu _cpu(
 	o_ip,
 	o_mar,
 	o_buff_data,
-	o_buff_code,
 	o_addr
 );
 	   
