@@ -1,4 +1,5 @@
 module alu(
+	clk,
 	ialu,
 	ealu,
 	_shl,_add,_sub,_xor,_or,_and,_shr,_not,
@@ -6,7 +7,7 @@ module alu(
 	data
 );
 
-input ialu,ealu,_shl,_add,_sub,_xor,_or,_and,_shr,_not;
+input ialu,ealu,_shl,_add,_sub,_xor,_or,_and,_shr,_not,clk;
 input [15:0] data_a;
 inout [15:0] data;
 
@@ -14,7 +15,7 @@ reg [15:0] res,tmp;
 
 assign data = tmp;
 
-always @ (_shl,_add,_sub,_xor,_or,_and,_shr,_not)
+always @ (posedge clk)
 begin
 	if(ialu)
 	begin

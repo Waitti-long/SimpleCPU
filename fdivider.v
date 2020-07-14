@@ -13,7 +13,7 @@ assign clk_out = tmp;
 
 always @ (posedge clk)
 begin
-	if(cnt == 10)
+	if(cnt == 25000000)
 	begin
 		cnt <= 0;
 		tmp <= ~tmp;

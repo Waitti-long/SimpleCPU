@@ -57,7 +57,7 @@ dr _regsp(clk,idr_sp,edr_sp,data,data_sp);
 dr _regbp(clk,idr_bp,edr_bp,data,data_bp);
 
 ram _ram(clk,iram,eram,iaddr,data,o_addr);
-alu _alu(ialu,ealu,_shl,_add,_sub,_xor,_or,_and,_shr,_not,data_reg0,data);
+alu _alu(clk,ialu,ealu,_shl,_add,_sub,_xor,_or,_and,_shr,_not,data_reg0,data);
 
 ctrl _ctrl(
 	clk, // 时钟,
