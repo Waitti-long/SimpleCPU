@@ -45,7 +45,7 @@ defparam coderom.lpm_file = "code.mif";
 beat _beat(clk,reset,t0,t1,t2,t3,t4,t5,t6,t7);			
 pc _pc(clk,reset,ipc,epc,data,ip);
 mar _mar(clk,imar,emar,data,o_mar);
-ir _ir(	clk,iir,eir,code,
+ir _ir(	clk,iir,eir,cmd,
 			_nop,_ld,_ln,_cp,_st,_shl,_add,_sub,_jz,_jb,_jmp,_xor,_or,_and,_shr,_not,_push,_pop,
 			data,
 			o_buff_data,o_buff_code);
